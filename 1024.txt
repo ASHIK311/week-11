@@ -1,0 +1,77 @@
+beecrowd | 1024
+Encryption
+By Neilor Tonin, URI  Brazil
+
+Timelimit: 1
+You have been asked to build a simple encryption program. This program should be able to send coded messages without someone been able to read them. The process is very simple. It is divided into two parts.
+
+First, each uppercase or lowercase letter must be shifted three positions to the right, according to the ASCII table: letter 'a' should become letter 'd', letter 'y' must become the character '|' and so on. Second, each line must be reversed. After being reversed, all characters from the half on (truncated) must be moved one position to the left in ASCII. In this case, 'b' becomes 'a' and 'a' becomes '`'.
+
+For example, if the resulting word of the first part is "tesla", the letters "sla" should be moved one position to the left. However, if the resulting word of the first part is "t#$A", the letters "$A" are to be displaced.
+
+Input
+The input contains a number of cases of test. The first line of each case of test contains an integer N (1 ≤ N ≤ 1 * 10⁴), indicating the number of lines the problem should encrypt. The following N lines contain M characters each M (1 ≤ M ≤ 1 * 10³).
+Output
+For each input, you must present the encrypted message.
+
+Input Sample	Output Sample
+4
+Texto #3
+abcABC1
+vxpdylY .ph
+vv.xwfxo.fd
+
+3# rvzgV
+1FECedc
+ks. \n{frzx
+gi.r{hyz-xx
+
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_LEN 1000
+
+void reverse(char str[]) {
+    int len = strlen(str);
+    for (int i = 0, j = len - 1; i < j; i++, j--) {
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+    }
+}
+
+void shift(char str[]) {
+    int len = strlen(str);
+    for (int i = 0; i < len; i++) {
+        if (isalpha(str[i])) {
+            str[i] += 3;
+        }
+    }
+}
+
+void replace(char str[]) {
+    int len = strlen(str);
+    for (int i = 0; i < len; i++) {
+        if (i >= len / 2) {
+            str[i]--;
+        }
+    }
+}
+
+int main() {
+    int n;
+    char str[MAX_LEN];
+    scanf("%d", &n);
+    getchar();
+    while (n--) {
+        fgets(str, MAX_LEN, stdin);
+        str[strcspn(str, "\n")] = '\0'; // remove trailing newline
+        shift(str);
+        reverse(str);
+        replace(str);
+        printf("%s\n", str);
+    }
+    return 0;
+}

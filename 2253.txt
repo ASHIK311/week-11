@@ -1,0 +1,101 @@
+beecrowd | 2253
+Passwords Validator
+By Gustavo Marmentini, URI BR Brazil
+
+Timelimit: 1
+Rolien and Naej are the developers of a big programming portal. To help the new site registration system, they requested your help. Your job is write a code that validates passwords that are registered on the portal, for that you should be aware for the following requirements:
+
+The password must contain at least one uppercase letter, one lowercase letter and a number;
+It can’t have any punctuation character, accent or space;
+Moreover, the password must be 6 to 32 characters.
+Input
+The input contains several test cases and ends with EOF. Each line has a string S, corresponding to the password that is entered by the user at registration.
+
+Output
+The output contains a line, which can be "Senha valida.", if the password has all previously requested requirements, or "Senha invalida.", if one or more requirements aren’t met.
+
+Input Sample	Output Sample
+URI Online Judge
+
+AbcdEfgh99
+
+URIOnlineJudge12
+
+URI Online Judge 12
+
+Aass9
+
+Aassd9
+
+Senha invalida.
+
+Senha valida.
+
+Senha valida.
+
+Senha invalida.
+
+Senha invalida.
+
+Senha valida.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<stdio.h>
+int main()
+{
+    char a[100];
+    int i,j,k,c=0,s=0,n=0,x=0;
+    while(gets(a))
+    {
+        c=0,s=0,n=0,x=0;
+        k=strlen(a);
+        if(k>=6&&k<=32)
+        {
+            for(i=0; i<k; i++)
+            {
+                if(a[i]>='A'&&a[i]<='Z')
+                {
+                    c++;
+                }
+                else if(a[i]>='a'&&a[i]<='z')
+                {
+                    s++;
+                }
+                else if(a[i]>='0'&&a[i]<='9')
+                {
+                    n++;
+                }
+                else
+                {
+                    x++;
+                }
+            }
+            if(x!=0||c==0||s==0||n==0){
+                printf("Senha invalida.\n");
+            }
+            else{
+                printf("Senha valida.\n");
+            }
+        }
+        else
+        {
+            printf("Senha invalida.\n");
+        }
+    }
+    return 0;
+}

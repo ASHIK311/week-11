@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int N,i,j,k,l,m,n;
+    char name[150],r_name[150],nm[150];
+    scanf("%d",&N);
+    for(i=0; i<=N; i++){
+        gets(name);
+        if(i==0){
+            continue;
+        }
+        l=strlen(name);
+        k=l/2;
+        for(m=0,j=k-1; j>=0; j--){
+            r_name[m]=name[j];
+            m++;
+        }
+        for(j=l-1; j>=k; j--){
+            r_name[m]=name[j];
+            m++;
+        }
+        r_name[m]='\0';
+        printf("%s\n",r_name);
+        m=0;
+    }
+    return 0;
+}
+
+
+
+beecrowd | 1235
+Inside Out
+By TopCoder*  USA
+
+Timelimit: 1
+Your printer has been infected by a virus and is printing gibberish. After staring at several printed pages for a while, you realize that it is printing every line inside-out. In other words, the left half of each line is being printed starting in the middle of the page and proceeding out toward the left margin. Similarly, the right half of each line is being printed starting at the right margin and proceeding in toward the middle of the page.
+
+For example, the line:
+THIS LINE IS GIBBERISH
+
+is being printed as:
+I ENIL SIHTHSIREBBIG S
+
+In the same way, the line " MANGOS " is being printed as "NAM  SOG".Your task is to unscramble a String line from its printed form back into its original order. You can assume that line contains an even number of characters.
+
+Input
+The input contains many test cases. The first line of input contains an integer N that indicates the number of test cases. Follow N lines, each one with a string with the maximum of 100 uppercase letters ('A'-'Z') and spaces (' '). that must be unscrambled from its printed form back into its original order, like example above.
+
+Output
+Each line of input must produce a line of output, with the decoded message, like example above.
+
+Sample Input	Sample Output
+5
+I ENIL SIHTHSIREBBIG S
+LEVELKAYAK
+H YPPAHSYADILO
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+VOD OWT SNEH HCNERF EGDIRTRAP A DNA SE
+
+THIS LINE IS GIBBERISH
+LEVELKAYAK
+HAPPY HOLIDAYS
+MLKJIHGFEDCBAZYXWVUTSRQPON
+FRENCH HENS TWO DOVES AND A PARTRIDGE
